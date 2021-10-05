@@ -1,13 +1,16 @@
 import "./App.css";
 import PlantContextProvider from "./context/PlantContext";
+import Search from "./components/Search";
+import { Heading, Box } from "@chakra-ui/react";
 
 function App() {
   return (
     <PlantContextProvider>
       <div className="App">
-        <header className="App-header">
-          <h1> Plant Wish List </h1>
-        </header>
+        <Box align="center" overflow="hidden">
+          <Heading>Rachel's Plant Shop</Heading>
+          <Search />
+        </Box>
       </div>
     </PlantContextProvider>
   );

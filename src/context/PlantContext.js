@@ -7,7 +7,7 @@ export const PlantContext = createContext();
 const PlantContextProvider = (props) => {
   const [plantList, setPlantList] = useState([]);
 
-
+  //sets plant list to state during first render
   useEffect(() => {
     getPlantData();
   }, []);
