@@ -5,16 +5,23 @@ import { ref, onValue } from "firebase/database";
 export const PlantContext = createContext();
 
 const PlantContextProvider = (props) => {
+  const [plantList, setPlantList] = useState([]);
+
+
+  useEffect(() => {
+    getPlantData();
+  }, []);
+
   const getPlantData = () => {
     const plantNameRef = ref(db, "Plants-List");
     onValue(plantNameRef, (snapshot) => {
       const data = snapshot.val();
-      console.log(data);
+      setPlantList(data);
     });
   };
-  getPlantData();
+
   return (
-    <PlantContext.Provider value={{ getPlantData }}>
+    <PlantContext.Provider value={{ plantList }}>
       {props.children}
     </PlantContext.Provider>
   );

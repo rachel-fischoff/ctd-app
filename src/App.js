@@ -1,5 +1,4 @@
 import "./App.css";
-import Inventory from "./components/Inventory";
 import PlantContextProvider from "./context/PlantContext";
 
 function App() {
@@ -7,9 +6,8 @@ function App() {
     <PlantContextProvider>
       <div className="App">
         <header className="App-header">
-          <h1> Product Inventory </h1>
+          <h1> Plant Wish List </h1>
         </header>
-        <Inventory />
       </div>
     </PlantContextProvider>
   );
