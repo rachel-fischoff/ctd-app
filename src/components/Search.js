@@ -3,24 +3,11 @@ import { PlantContext } from "../context/PlantContext";
 import { Box, Input } from "@chakra-ui/react";
 
 export default function Search() {
-  const { plantList } = useContext(PlantContext);
-
-  //Should it be an empty string? should it be in the search section or the context?
-  const [searchTerm, setSearchTerm] = useState("");
-  const [filteredPlants, setFilteredPlants] = useState([]);
+  const { searchTerm, setSearchTerm } = useContext(PlantContext);
 
   const handleSearch = (event) => setSearchTerm(event.target.value);
   
-  useEffect(() => {
-      let filtered = plantList.filter((plant)=>{
-          return plant.common_name.toLowerCase().includes(searchTerm.toLowerCase());
-      })
-      setFilteredPlants(filtered);
-    //   return () => {
-    //       cleanup
-    //   }
-  }, [searchTerm])
-
+  //TODO: error handling when no search results and clear the input
   return (
     <Box borderRadius="lg" p="6" w="75%">
       <Input

@@ -7,10 +7,26 @@ export const PlantContext = createContext();
 const PlantContextProvider = (props) => {
   const [plantList, setPlantList] = useState([]);
 
+    //Should it be an empty string? should it be in the search section or the context?
+    const [searchTerm, setSearchTerm] = useState("");
+    const [filteredPlants, setFilteredPlants] = useState([]);
+
+
+
   //sets plant list to state during first render
   useEffect(() => {
     getPlantData();
   }, []);
+
+
+  //when searchTerm is entered sets the filtered plants
+  useEffect(() => {
+    let filtered = plantList.filter((plant)=>{
+        return plant.common_name.toLowerCase().includes(searchTerm.toLowerCase());
+    })
+    setFilteredPlants(filtered);
+}, [searchTerm])
+
 
   const getPlantData = () => {
     const plantNameRef = ref(db, "Plants-List");
@@ -21,7 +37,7 @@ const PlantContextProvider = (props) => {
   };
 
   return (
-    <PlantContext.Provider value={{ plantList }}>
+    <PlantContext.Provider value={{ plantList, setSearchTerm, searchTerm, filteredPlants }}>
       {props.children}
     </PlantContext.Provider>
   );
