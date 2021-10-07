@@ -1,6 +1,14 @@
 import React, { createContext, useEffect, useState } from "react";
 import { db } from "../lib/firebase";
-import { ref, onValue, set } from "firebase/database";
+import {
+  collection,
+  addDoc,
+  getDoc,
+  doc,
+  query,
+  where,
+  getDocs,
+} from "firebase/firestore";
 
 export const PlantContext = createContext();
 
@@ -11,20 +19,19 @@ const PlantContextProvider = (props) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredPlants, setFilteredPlants] = useState([]);
 
+  const getPlantData = async () => {
+    let tempItems = [];
+    const querySnapshot = await getDocs(collection(db, "Plants-List"));
+    querySnapshot.forEach((doc) => {
+      tempItems.push({ ...doc.data() });
+    });
+    setPlantList(tempItems);
+  };
+
   // const addDefaultInventory = () => {
-  //   const dbRef = ref(db, 'Plants-List');
-    
-  //   onValue(dbRef, (snapshot) => {
-  //     snapshot.forEach((childSnapshot) => {
-  //       const childKey = childSnapshot.key;
-  //       const childData = childSnapshot.val();
-  //       // ...
-  //     });
-  //   }, {
-  //     onlyOnce: true
-  //   });
+
   // };
-  
+
   // addDefaultInventory();
 
   //sets plant list to state during first render
@@ -32,21 +39,17 @@ const PlantContextProvider = (props) => {
     getPlantData();
   }, []);
 
-  //when searchTerm is entered sets the filtered plants
+  //when searchTerm is entered, the filtered plants are set to state
   useEffect(() => {
-    let filtered = plantList.filter((plant) => {
-      return plant.common_name.toLowerCase().includes(searchTerm.toLowerCase());
-    });
-    setFilteredPlants(filtered);
+    if (plantList) {
+      let filtered = plantList.filter((plant) => {
+        return plant.common_name
+          .toLowerCase()
+          .includes(searchTerm.toLowerCase());
+      });
+      setFilteredPlants(filtered);
+    }
   }, [searchTerm]);
-
-  const getPlantData = () => {
-    const plantNameRef = ref(db, "Plants-List");
-    onValue(plantNameRef, (snapshot) => {
-      const data = snapshot.val();
-      setPlantList(data);
-    });
-  };
 
   return (
     <PlantContext.Provider
