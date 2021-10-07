@@ -26,12 +26,13 @@ export default function PlantsResults() {
       {filteredPlants &&
         filteredPlants.map((plant) => (
           //change about to id. add ids to database.
-          <Box w="100%" h="60" bg="gray.400" key={plant.about}>
+          <Box w="85%" h="60" bg="gray.400" key={plant.about} m={4} p={2}>
             <Text>{plant.common_name}</Text>
             <Image
               boxSize="100px"
               objectFit="cover"
               src={plant.image_url}
+              fallbackSrc="https://via.placeholder.com/100" 
               alt={plant.botanical_name}
             ></Image>
             <Text>Number in Stock </Text>
