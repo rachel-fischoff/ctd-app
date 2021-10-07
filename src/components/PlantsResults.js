@@ -5,6 +5,9 @@ import {
   Box,
   Text,
   Image,
+  Button,
+  Center,
+  Link,
   NumberInput,
   NumberInputField,
   NumberInputStepper,
@@ -26,24 +29,39 @@ export default function PlantsResults() {
       {filteredPlants &&
         filteredPlants.map((plant) => (
           //change about to id. add ids to database.
-          <Box w="85%" h="60" bg="gray.400" key={plant.about} m={4} p={2}>
-            <Text>{plant.common_name}</Text>
+          <Box
+            maxW="lg"
+            w="85%"
+            h="60"
+            bg="gray.400"
+            key={plant.about}
+            m={4}
+            p={2}
+          >
+            <Text as="em">{plant.common_name}</Text>
             <Image
               boxSize="100px"
               objectFit="cover"
               src={plant.image_url}
-              fallbackSrc="https://via.placeholder.com/100" 
+              fallbackSrc="https://via.placeholder.com/100"
               alt={plant.botanical_name}
+              m={2}
             ></Image>
             <Text>Number in Stock </Text>
             {/* TODO: add inventory field to database and then value = plant.available_to_sell */}
-            <NumberInput size="md" maxW={24} onChange={handleInventoryUpdate}>
-              <NumberInputField />
-              <NumberInputStepper>
-                <NumberIncrementStepper />
-                <NumberDecrementStepper />
-              </NumberInputStepper>
-            </NumberInput>
+            <Center>
+              <NumberInput size="md" maxW={24} onChange={handleInventoryUpdate}>
+                <NumberInputField />
+                <NumberInputStepper>
+                  <NumberIncrementStepper />
+                  <NumberDecrementStepper />
+                </NumberInputStepper>
+              </NumberInput>
+              <Button ml={2} colorScheme="teal" size="sm">
+                Save
+              </Button>
+            </Center>
+            <Link color="teal.800" size="sm">Details</Link>
           </Box>
         ))}
     </SimpleGrid>
