@@ -1,5 +1,14 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { PlantContext } from "../context/PlantContext";
+import { db } from "../lib/firebase";
+import {
+  collection,
+  updateDoc,
+  addDoc,
+  getDoc,
+  doc,
+  getDocs,
+} from "firebase/firestore";
 import {
   SimpleGrid,
   Box,
@@ -16,14 +25,21 @@ import {
 } from "@chakra-ui/react";
 
 export default function PlantsResults() {
+  const [currentValue, setCurrentValue] = useState();
+
   const { filteredPlants } = useContext(PlantContext);
 
-  /* In this component? 
-    1) save button? that updates the database based on the list - 
-    2) another component that checks for inventory updates and emails the department
+  /* TODO: 
+    1) another component that checks for inventory updates and emails the department
   */
-  const handleInventoryUpdate = () => {
-    //would I update in context or directly to Db here
+
+  const handleInventoryUpdate = (currentValue) => {
+    setCurrentValue(currentValue);
+  };
+
+  const updateDatabase = async (event) => {
+    const plantRef = doc(db, "Plants-List", event.target.id);
+    await updateDoc(plantRef, { inventory: currentValue });
   };
 
   return (
@@ -49,20 +65,33 @@ export default function PlantsResults() {
               m={2}
             ></Image>
             <Text>Number in Stock </Text>
-            {/* TODO: add inventory field to database and then value = plant.available_to_sell */}
             <Center>
-              <NumberInput defaultValue={plant.inventory}size="md" maxW={24} onChange={handleInventoryUpdate} >
+              <NumberInput
+                defaultValue={plant.inventory}
+                value={currentValue}
+                size="md"
+                maxW={24}
+                onChange={handleInventoryUpdate}
+              >
                 <NumberInputField />
                 <NumberInputStepper>
                   <NumberIncrementStepper />
                   <NumberDecrementStepper />
                 </NumberInputStepper>
               </NumberInput>
-              <Button ml={2} colorScheme="teal" size="sm">
-                Save
+              <Button
+                ml={2}
+                colorScheme="teal"
+                size="sm"
+                onClick={updateDatabase}
+                id={plant.id}
+              >
+                Save {currentValue}
               </Button>
             </Center>
-            <Link color="teal.800" size="sm">Details</Link>
+            <Link color="teal.800" size="sm">
+              Details
+            </Link>
           </Box>
         ))}
     </SimpleGrid>
