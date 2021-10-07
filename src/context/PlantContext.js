@@ -6,8 +6,6 @@ import {
   addDoc,
   getDoc,
   doc,
-  query,
-  where,
   getDocs,
 } from "firebase/firestore";
 
@@ -41,7 +39,7 @@ const PlantContextProvider = (props) => {
   // };
 
 
-  //sets plant list to state during first render
+  //sets plant list to state during first render & TODO: should update when inventory is changed 
   useEffect(() => {
     getPlantData();
   }, []);
