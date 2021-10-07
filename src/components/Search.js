@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext } from "react";
 import { PlantContext } from "../context/PlantContext";
 import { Box, Input } from "@chakra-ui/react";
 
