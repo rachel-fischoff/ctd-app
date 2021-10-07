@@ -2,6 +2,7 @@ import React, { createContext, useEffect, useState } from "react";
 import { db } from "../lib/firebase";
 import {
   collection,
+  updateDoc,
   addDoc,
   getDoc,
   doc,
@@ -19,6 +20,8 @@ const PlantContextProvider = (props) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredPlants, setFilteredPlants] = useState([]);
 
+  // const plantsListRef = collection(db, "Plants-List");
+
   const getPlantData = async () => {
     let tempItems = [];
     const querySnapshot = await getDocs(collection(db, "Plants-List"));
@@ -28,11 +31,15 @@ const PlantContextProvider = (props) => {
     setPlantList(tempItems);
   };
 
-  // const addDefaultInventory = () => {
-
+  /** used the following to add default inventory and doc id to plant doc **/
+  // const addDefaultInventory = async () => {
+  //   const querySnapshot = await getDocs(collection(db, "Plants-List"));
+  //   querySnapshot.forEach(async (document) => {
+  //     const docRef = doc(db, 'Plants-List', document.id)
+  //     await updateDoc(docRef, {id: document.id})
+  //   });
   // };
 
-  // addDefaultInventory();
 
   //sets plant list to state during first render
   useEffect(() => {
