@@ -25,7 +25,7 @@ export default function PlantBox({ plant }) {
   };
 
   useEffect(() => {
-    if (currentValue == 0) {
+    if (currentValue === 0) {
       emailAdmin(plant);
     }
   }, [currentValue, plant]);

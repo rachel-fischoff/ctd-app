@@ -2,7 +2,7 @@ import "./App.css";
 import PlantContextProvider from "./context/PlantContext";
 import Search from "./components/Search";
 import AddNewPlant from "./components/AddNewPlant";
-import PlantsResults from "./components/PlantsResults";
+// import PlantsResults from "./components/PlantsResults";
 import PlantsResultsTable from "./components/PlantResultsTable";
 import { Heading, Box } from "@chakra-ui/react";
 
