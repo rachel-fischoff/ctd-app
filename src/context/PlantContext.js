@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
-import { db } from "../lib/firebase";
+import { db } from "../firebase";
 import { collection, getDocs } from "firebase/firestore";
 
 export const PlantContext = createContext();
