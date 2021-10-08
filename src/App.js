@@ -3,7 +3,7 @@ import PlantContextProvider from "./context/PlantContext";
 import Search from "./components/Search";
 import AddNewPlant from "./components/AddNewPlant";
 import PlantsResults from "./components/PlantsResults";
-import { Heading, Box, Center } from "@chakra-ui/react";
+import { Heading, Box } from "@chakra-ui/react";
 
 function App() {
   return (
@@ -11,10 +11,8 @@ function App() {
       <div className="App">
         <Box align="center" overflow="hidden">
           <Heading>Rachel's Plant Shop</Heading>
-          <Center>
-            <Search />
-            <AddNewPlant />
-          </Center>
+          <AddNewPlant />
+          <Search />
           <PlantsResults />
         </Box>
       </div>

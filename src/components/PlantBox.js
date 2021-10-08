@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { db } from "../lib/firebase";
+import sendEmail from "./SendEmail";
 import { updateDoc, doc } from "firebase/firestore";
 import {
   Box,
@@ -18,17 +19,16 @@ import {
 export default function PlantBox({ plant }) {
   const [currentValue, setCurrentValue] = useState();
 
-  /* TODO: 
-    1) another component that checks for inventory updates and emails the department
-  */
+  const emailAdmin = (plant) => {
+    const message = `We are out of ${plant.common_name}`;
+    sendEmail(message);
+  };
 
-  // const emailAdmin = () => {};
-
-  // useEffect(() => {
-  //   if ((currentValue = 0)) {
-  //     emailAdmin();
-  //   }
-  // }, [currentValue]);
+  useEffect(() => {
+    if (currentValue == 0) {
+      emailAdmin(plant);
+    }
+  }, [currentValue, plant]);
 
   const handleInventoryUpdate = (currentValue) => {
     setCurrentValue(currentValue);
