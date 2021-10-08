@@ -3,7 +3,7 @@ import { PlantContext } from "../context/PlantContext";
 import PlantBox from "./PlantBox";
 import { SimpleGrid } from "@chakra-ui/react";
 
-export default function PlantsResults() {
+export default function PlantsGridView() {
   const { filteredPlants } = useContext(PlantContext);
   return (
     <SimpleGrid minChildWidth="200px" gap={6}>

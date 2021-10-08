@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { db } from "../lib/firebase";
+import { db } from "../firebase";
 import sendEmail from "./SendEmail";
 import { updateDoc, doc } from "firebase/firestore";
 import {
@@ -55,6 +55,7 @@ export default function PlantBox({ plant }) {
       <Center>
         <NumberInput
           defaultValue={plant.inventory}
+          min={0}
           value={currentValue}
           size="md"
           maxW={24}

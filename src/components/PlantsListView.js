@@ -12,7 +12,7 @@ import {
   useToken,
 } from "@chakra-ui/react";
 
-export default function PlantsResultsTable() {
+export default function PlantsListView() {
   const { filteredPlants } = useContext(PlantContext);
 
   const bg = useToken("colors", "gray.200");
