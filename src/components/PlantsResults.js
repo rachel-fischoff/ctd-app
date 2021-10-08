@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { PlantContext } from "../context/PlantContext";
 import { db } from "../lib/firebase";
 import {
@@ -33,6 +33,14 @@ export default function PlantsResults() {
     1) another component that checks for inventory updates and emails the department
   */
 
+  const emailAdmin = () => {};
+
+  useEffect(() => {
+    if ((currentValue = 0)) {
+      emailAdmin();
+    }
+  }, [currentValue]);
+
   const handleInventoryUpdate = (currentValue) => {
     setCurrentValue(currentValue);
   };
@@ -42,6 +50,9 @@ export default function PlantsResults() {
     await updateDoc(plantRef, { inventory: currentValue });
   };
 
+
+  //TODO: change filtered list so that it will reset 
+  // and then not change all the plants numbers together but individually
   return (
     <SimpleGrid minChildWidth="200px" gap={6}>
       {filteredPlants &&
