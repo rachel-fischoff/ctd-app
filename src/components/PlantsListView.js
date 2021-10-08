@@ -32,7 +32,7 @@ export default function PlantsListView() {
       </Thead>
       <Tbody>
         {filteredPlants &&
-          filteredPlants.map((plant) => <PlantRow plant={plant}  key={plant.id}/>)}
+          filteredPlants.map((plant) => <PlantRow plant={plant} key={plant.id}/>)}
       </Tbody>
       <Tfoot>
         <Tr bg={bg + "!important"}>

@@ -15,6 +15,7 @@ export default function Search() {
         value={searchTerm}
         onChange={handleSearch}
       />
+      {/* add icon to click for error */}
     </Box>
   );
 }
