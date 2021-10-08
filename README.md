@@ -3,7 +3,8 @@
 ## Rachel's Plant Shop - Inventory 
 The goal of this project is to create a React app that tracks inventory of at least one. The user is able to increase and decrease the amount of a product. The user also receives an email when the product is at zero. This iteration creates a fictional plant store where the user (an employee) can update inventory and receive an email when there is none of a certain plant in stock. It also allows the user to add new inventory. The project uses a list of 53 plants `plantsList.json` See import.js for steps to upload the json to a cloud Firestore DB.
 
-TBD: The project is deployed through
+The project is deployed through [Netlify](https://ctd-plant-shop.netlify.app/) at https://ctd-plant-shop.netlify.app/
+
 TBD: info about authentication & DB configs
 
 ## How Does it Work?

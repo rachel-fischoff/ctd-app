@@ -2,12 +2,8 @@ import React, { useContext, useState, useEffect } from "react";
 import { PlantContext } from "../context/PlantContext";
 import { db } from "../lib/firebase";
 import {
-  collection,
   updateDoc,
-  addDoc,
-  getDoc,
   doc,
-  getDocs,
 } from "firebase/firestore";
 import {
   SimpleGrid,
@@ -35,11 +31,11 @@ export default function PlantsResults() {
 
   const emailAdmin = () => {};
 
-  useEffect(() => {
-    if ((currentValue = 0)) {
-      emailAdmin();
-    }
-  }, [currentValue]);
+  // useEffect(() => {
+  //   if ((currentValue = 0)) {
+  //     emailAdmin();
+  //   }
+  // }, [currentValue]);
 
   const handleInventoryUpdate = (currentValue) => {
     setCurrentValue(currentValue);

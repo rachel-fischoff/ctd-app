@@ -2,10 +2,6 @@ import React, { createContext, useEffect, useState } from "react";
 import { db } from "../lib/firebase";
 import {
   collection,
-  updateDoc,
-  addDoc,
-  getDoc,
-  doc,
   getDocs,
 } from "firebase/firestore";
 
@@ -17,8 +13,6 @@ const PlantContextProvider = (props) => {
   //Should it be an empty string? should it be in the search section or the context?
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredPlants, setFilteredPlants] = useState([]);
-
-  // const plantsListRef = collection(db, "Plants-List");
 
   const getPlantData = async () => {
     let tempItems = [];
