@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import PlantContextProvider from "./context/PlantContext";
+import LogIn from "./components/LogIn";
 import Search from "./components/Search";
 import ToggleListGrid from "./components/ToggleListGrid";
 import { Heading, Box } from "@chakra-ui/react";
@@ -12,6 +13,7 @@ function App() {
       <div className="App">
         <Box align="center" overflow="hidden">
           <Heading>Rachel's Plant Shop</Heading>
+          <LogIn/>
           <Search />
           <ToggleListGrid />
         </Box>

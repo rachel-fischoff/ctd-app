@@ -32,7 +32,7 @@ const email = "rachelsplantstore@gmail.com";
   };
 
   useEffect(() => {
-    if (currentValue === 0) {
+    if (parseInt(currentValue === 0)) {
       emailAdmin(plant);
     }
   }, [currentValue, plant]);
