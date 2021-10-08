@@ -32,7 +32,7 @@ export default function PlantsResultsTable() {
       </Thead>
       <Tbody>
         {filteredPlants &&
-          filteredPlants.map((plant) => <PlantRow plant={plant} />)}
+          filteredPlants.map((plant) => <PlantRow plant={plant}  key={plant.id}/>)}
       </Tbody>
       <Tfoot>
         <Tr bg={bg + "!important"}>
