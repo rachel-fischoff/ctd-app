@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import { PlantContext } from "../context/PlantContext";
 import { db } from "../lib/firebase";
 import {
@@ -29,7 +29,7 @@ export default function PlantsResults() {
     1) another component that checks for inventory updates and emails the department
   */
 
-  const emailAdmin = () => {};
+  // const emailAdmin = () => {};
 
   // useEffect(() => {
   //   if ((currentValue = 0)) {

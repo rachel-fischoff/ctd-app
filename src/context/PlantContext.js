@@ -48,7 +48,7 @@ const PlantContextProvider = (props) => {
       });
       setFilteredPlants(filtered);
     }
-  }, [searchTerm]);
+  }, [searchTerm, plantList]);
 
   return (
     <PlantContext.Provider
