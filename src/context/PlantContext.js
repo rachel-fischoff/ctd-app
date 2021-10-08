@@ -1,9 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
 import { db } from "../lib/firebase";
-import {
-  collection,
-  getDocs,
-} from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 
 export const PlantContext = createContext();
 
@@ -32,21 +29,22 @@ const PlantContextProvider = (props) => {
   //   });
   // };
 
-
-  //sets plant list to state during first render & TODO: should update when inventory is changed 
+  //sets plant list to state during first render & TODO: should update when inventory is changed
   useEffect(() => {
     getPlantData();
   }, []);
 
   //when searchTerm is entered, the filtered plants are set to state
   useEffect(() => {
-    if (plantList) {
+    if (searchTerm) {
       let filtered = plantList.filter((plant) => {
         return plant.common_name
           .toLowerCase()
           .includes(searchTerm.toLowerCase());
       });
       setFilteredPlants(filtered);
+    } else {
+      setFilteredPlants([]);
     }
   }, [searchTerm, plantList]);
 
