@@ -1,14 +1,11 @@
 import emailjs from "emailjs-com";
 
-
-
 const sendEmail = async (message, name, email) => {
-    
   try {
     const response = await emailjs.send(
       process.env.REACT_APP_YOUR_SERVICE_ID,
       process.env.REACT_APP_YOUR_TEMPLATE_ID,
-      { name, email, message },
+      { message, name, email },
       process.env.REACT_APP_YOUR_USER_ID
     );
 

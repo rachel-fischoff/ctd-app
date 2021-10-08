@@ -50,7 +50,7 @@ const PlantContextProvider = (props) => {
 
   return (
     <PlantContext.Provider
-      value={{ plantList, setSearchTerm, searchTerm, filteredPlants }}
+      value={{ plantList, setSearchTerm, searchTerm, filteredPlants}}
     >
       {props.children}
     </PlantContext.Provider>

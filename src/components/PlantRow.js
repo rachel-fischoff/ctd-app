@@ -18,6 +18,7 @@ export default function PlantRow({ plant }) {
   const updateDatabase = async (event) => {
     const plantRef = doc(db, "Plants-List", event.target.id);
     await updateDoc(plantRef, { inventory: currentValue });
+    setHideEditButton(false);
   };
 
 
@@ -42,7 +43,7 @@ const email = "rachelsplantstore@gmail.com";
   };
 
   return (
-    <Tr key={plant.id}>
+    <Tr>
       <Td>{plant.common_name}</Td>
       <Td>
         {!hideEditButton ? (
