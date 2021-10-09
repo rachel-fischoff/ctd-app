@@ -6,9 +6,6 @@ export const PlantContext = createContext();
 
 const PlantContextProvider = (props) => {
   const [plantList, setPlantList] = useState([]);
-  // const [userProfile, setUserProfile] = useState();
-
-  //Should it be an empty string? should it be in the search section or the context?
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredPlants, setFilteredPlants] = useState([]);
 
@@ -20,11 +17,6 @@ const PlantContextProvider = (props) => {
     });
     setPlantList(tempItems);
   };
-
-
-  // useEffect(() => {
-  //   setUserProfile(user)
-  // }, [])
 
   //sets plant list to state during first render & TODO: should update when inventory is changed
   useEffect(() => {
@@ -47,7 +39,7 @@ const PlantContextProvider = (props) => {
 
   return (
     <PlantContext.Provider
-      value={{ plantList, setSearchTerm, searchTerm, filteredPlants}}
+      value={{ plantList, setSearchTerm, searchTerm, filteredPlants }}
     >
       {props.children}
     </PlantContext.Provider>

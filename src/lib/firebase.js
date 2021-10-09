@@ -1,8 +1,19 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, query, where, addDoc, getDocs } from "firebase/firestore";
-// import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "firebase/auth";
-import { getAuth, signInWithPopup, GoogleAuthProvider, signOut } from "firebase/auth";
+import {
+  getFirestore,
+  collection,
+  query,
+  where,
+  addDoc,
+  getDocs,
+} from "firebase/firestore";
+import {
+  getAuth,
+  signInWithPopup,
+  GoogleAuthProvider,
+  signOut,
+} from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -22,44 +33,40 @@ const db = getFirestore(app);
 const provider = new GoogleAuthProvider();
 
 const auth = getAuth();
-const user = auth.currentUser;
-console.log(user);
 
-const findAndAddUser = async (user) => {
+const findUser = async (user) => {
   const usersRef = collection(db, "users");
   const q = query(usersRef, where("uid", "==", user.uid));
- 
   const querySnapshot = await getDocs(q);
-
-  if(querySnapshot.size > 0 ){
-    console.log("Document data:", querySnapshot.docs[0].data());
+  if (querySnapshot.size > 0) {
+    return querySnapshot.docs[0].data();
   } else {
-    const docRef = await addDoc(collection(db, "users"),{
-      uid: user.uid,
-      name: user.displayName,
-      authProvider: "google",
-      email: user.email,
-      emailVerified: user.emailVerified
-    })
-    console.log("Document written with ID: ", docRef.id);
+    return null;
   }
-
-}
+};
+const addUser = async (user) => {
+  const docRef = await addDoc(collection(db, "users"), {
+    uid: user.uid,
+    name: user.displayName,
+    authProvider: "google",
+    email: user.email,
+    emailVerified: user.emailVerified,
+  });
+  console.log("Document written with ID: ", docRef.id);
+};
 
 const signInWithGoogle = () => {
-  signInWithPopup(auth, provider)
-    .then( (result) => {
-      // This gives you a Google Access Token. You can use it to access the Google API.
-      const credential = GoogleAuthProvider.credentialFromResult(result);
-      const token = credential.accessToken;
+  return signInWithPopup(auth, provider)
+    .then((result) => {
+      GoogleAuthProvider.credentialFromResult(result);
       // The signed-in user info.
       const user = result.user;
-
-      console.log(token, 'token');
-      console.log(user, 'user');
-
-      findAndAddUser(user);
-      
+      findUser(user).then((result) => {
+        if (!result) {
+          addUser(user);
+        }
+      });
+      return user;
     })
     .catch((error) => {
       // Handle Errors here.
@@ -73,24 +80,17 @@ const signInWithGoogle = () => {
     });
 };
 
-// onAuthStateChanged(auth, (user) => {
-//   if (user) {
-//     // User is signed in, see docs for a list of available properties
-//     // https://firebase.google.com/docs/reference/js/firebase.User
-//     const uid = user.uid;
-//     // ...
-//     console.log(uid);
-//   } else {
-//     // User is signed out
-//     // ...
-//   }
-// });
 
-const signOutWithGoogle = () => {signOut(auth).then(() => {
-  // Sign-out successful.
-}).catch((error) => {
-  // An error happened.
-  console.log(error);
-})};
 
-export { db, signInWithGoogle, signOutWithGoogle };
+const signOutWithGoogle = () => {
+  return signOut(auth)
+    .then(() => {
+      console.log("Sign-out successful.");
+    })
+    .catch((error) => {
+      // An error happened.
+      console.log(error);
+    });
+};
+
+export { db, signInWithGoogle, signOutWithGoogle, auth };
