@@ -1,7 +1,6 @@
 import React from "react";
-import "./App.css";
 import PlantContextProvider from "./context/PlantContext";
-import LogIn from "./components/LogIn";
+import GoogleSignIn from "./components/GoogleSignIn";
 import Search from "./components/Search";
 import ToggleListGrid from "./components/ToggleListGrid";
 import { Heading, Box } from "@chakra-ui/react";
@@ -9,15 +8,12 @@ import { Heading, Box } from "@chakra-ui/react";
 function App() {
   return (
     <PlantContextProvider>
-      {/* TODO: change this to the theme and remove App.css */}
-      <div className="App">
         <Box align="center" overflow="hidden">
-          <Heading>Rachel's Plant Shop</Heading>
-          <LogIn/>
+            <Heading>Rachel's Plant Shop</Heading>
+            <GoogleSignIn />
           <Search />
           <ToggleListGrid />
         </Box>
-      </div>
     </PlantContextProvider>
   );
 }

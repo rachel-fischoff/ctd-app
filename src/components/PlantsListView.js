@@ -32,18 +32,22 @@ export default function PlantsListView() {
       </Thead>
       <Tbody>
         {filteredPlants &&
-          filteredPlants.map((plant) => <PlantRow plant={plant} key={plant.id}/>)}
+          filteredPlants.map((plant) => (
+            <PlantRow plant={plant} key={plant.id} />
+          ))}
       </Tbody>
-      <Tfoot>
-        <Tr bg={bg + "!important"}>
-          <Th>Name</Th>
-          <Th isNumeric>In Stock</Th>
-          <Th>Kid-Friendly</Th>
-          <Th>Pet-Friendly</Th>
-          <Th>Water</Th>
-          <Th>Light</Th>
-        </Tr>
-      </Tfoot>
+      {filteredPlants.length > 3 ? (
+        <Tfoot>
+          <Tr bg={bg + "!important"}>
+            <Th>Name</Th>
+            <Th isNumeric>In Stock</Th>
+            <Th>Kid-Friendly</Th>
+            <Th>Pet-Friendly</Th>
+            <Th>Water</Th>
+            <Th>Light</Th>
+          </Tr>
+        </Tfoot>
+      ) : null}
     </Table>
   );
 }
