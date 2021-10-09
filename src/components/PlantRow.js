@@ -48,7 +48,7 @@ const email = "rachelsplantstore@gmail.com";
       <Td>
         {!hideEditButton ? (
           <Box display="flex" alignItems="center" flexDirection="column">
-            <Text m={1}>{plant.inventory}</Text>
+            <Text m={1}>{currentValue}</Text>
             <Button
               ml={2}
               variant="outline"

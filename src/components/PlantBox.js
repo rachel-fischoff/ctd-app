@@ -39,13 +39,13 @@ export default function PlantBox({ plant }) {
   };
 
   return (
-    <Box maxW="lg" w="85%" h="60" bg="gray.400" key={plant.id} m={4} p={2}>
+    <Box maxW="lg" w="85%" h="60" bg="gray.200" key={plant.id} m={4} p={2}>
       <Text as="em">{plant.common_name}</Text>
       <Image
         boxSize="100px"
         objectFit="cover"
         src={plant.image_url}
-        fallbackSrc="https://via.placeholder.com/100"
+        fallbackSrc="https://via.placeholder.com/100/000000/FFFFFF?Text=ImageNotAvailable"
         alt={plant.botanical_name}
         m={2}
       ></Image>
@@ -67,7 +67,7 @@ export default function PlantBox({ plant }) {
         </NumberInput>
         <Button
           ml={2}
-          colorScheme="teal"
+          colorScheme="blue"
           size="sm"
           onClick={updateDatabase}
           id={plant.id}

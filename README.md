@@ -9,7 +9,7 @@ The project is deployed through [Netlify](https://ctd-plant-shop.netlify.app/) a
 Upon opening the web page, any user can search for plants in the shop by name. The employee needs to sign in with google to update the inventory and save to the DB. The initial rendering of the web page is in a ListView but the user can choose a GridView as well. 
 
 ## Next Steps
-1. Create Node/Express Backend with MongoDB and have the backend send out emails and authentication.
+1. Create `Node/Express` Backend with `MongoDB` and have the backend send out emails and authentication.
 1. Add `React-Router` and create details page for each plant item and let the authenticated user edit details. 
 1. Create an Add Plant button on the home page that allows authenticated users to add new items. 
 1. Testing
