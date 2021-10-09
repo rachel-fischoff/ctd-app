@@ -1,11 +1,12 @@
 import React, { createContext, useEffect, useState } from "react";
-import { db } from "../firebase";
+import { db } from "../lib/firebase";
 import { collection, getDocs } from "firebase/firestore";
 
 export const PlantContext = createContext();
 
 const PlantContextProvider = (props) => {
   const [plantList, setPlantList] = useState([]);
+  // const [userProfile, setUserProfile] = useState();
 
   //Should it be an empty string? should it be in the search section or the context?
   const [searchTerm, setSearchTerm] = useState("");
@@ -20,14 +21,10 @@ const PlantContextProvider = (props) => {
     setPlantList(tempItems);
   };
 
-  /** used the following to add default inventory and doc id to plant doc **/
-  // const addDefaultInventory = async () => {
-  //   const querySnapshot = await getDocs(collection(db, "Plants-List"));
-  //   querySnapshot.forEach(async (document) => {
-  //     const docRef = doc(db, 'Plants-List', document.id)
-  //     await updateDoc(docRef, {id: document.id})
-  //   });
-  // };
+
+  // useEffect(() => {
+  //   setUserProfile(user)
+  // }, [])
 
   //sets plant list to state during first render & TODO: should update when inventory is changed
   useEffect(() => {

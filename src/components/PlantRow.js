@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { db } from "../firebase";
+import { db } from "../lib/firebase";
 import sendEmail from "./SendEmail";
 import { updateDoc, doc } from "firebase/firestore";
 import { Tr, Td, Input, Button, Center, Text, Box } from "@chakra-ui/react";
