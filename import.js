@@ -16,5 +16,6 @@ const jsonToFirestore = async () => {
       console.log(error);
     }
   };
-  
+
+  //uncomment line below to load initial JSON data without inventory to DB
   // jsonToFirestore();

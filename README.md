@@ -1,18 +1,18 @@
 # Overview 
 
 ## Rachel's Plant Shop - Inventory 
-The goal of this project is to create a React app that tracks inventory of at least one. The user is able to increase and decrease the amount of a product. The user also receives an email when the product is at zero. This iteration creates a fictional plant store where the user (an employee) can update inventory and receive an email when there is none of a certain plant in stock. It also allows the user to add new inventory. The project uses a list of 53 plants `plantsList.json` See import.js for steps to upload the json to a cloud Firestore DB.
+The goal of this project is to create an application that tracks inventory of at least one product. The user is able to increase and decrease the amount of a product. The user also receives an email when the product is at zero. This iteration creates a fictional plant store where the user (an employee) can update inventory and receive an email when there is none of a certain plant in stock. In order to update inventory in the Firestore DB, the user needs to sign in with google for authentication. The project uses a list of 53 plants `plantsList.json` See import.js for steps to upload the json to a cloud Firestore DB.
 
 The project is deployed through [Netlify](https://ctd-plant-shop.netlify.app/) at https://ctd-plant-shop.netlify.app/
 
-TBD: info about authentication & DB configs
-
 ## How Does it Work?
-Upon opening the web page, the user can search for plants in the shop by name or id or add a new plant to the inventory. 
+Upon opening the web page, any user can search for plants in the shop by name. The employee needs to sign in with google to update the inventory and save to the DB. The initial rendering of the web page is in a ListView but the user can choose a GridView as well. 
 
 ## Next Steps
-1. Create Node/Express Backend with MongoDB
-1. Add Testing 
+1. Create Node/Express Backend with MongoDB and have the backend send out emails and authentication.
+1. Add React-Router and create details page for each plant item and let the authenicated user edit details. 
+1. Create an Add Plant button on the home page that allows authenicated users to add new items. 
+1. Testing
 
 # Requirements To Set Up Locally
 1. A command line application such as Terminal.
