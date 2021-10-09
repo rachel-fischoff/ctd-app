@@ -10,8 +10,8 @@ Upon opening the web page, any user can search for plants in the shop by name. T
 
 ## Next Steps
 1. Create Node/Express Backend with MongoDB and have the backend send out emails and authentication.
-1. Add React-Router and create details page for each plant item and let the authenicated user edit details. 
-1. Create an Add Plant button on the home page that allows authenicated users to add new items. 
+1. Add `React-Router` and create details page for each plant item and let the authenticated user edit details. 
+1. Create an Add Plant button on the home page that allows authenticated users to add new items. 
 1. Testing
 
 # Requirements To Set Up Locally

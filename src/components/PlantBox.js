@@ -8,7 +8,6 @@ import {
   Image,
   Button,
   Center,
-  Link,
   NumberInput,
   NumberInputField,
   NumberInputStepper,
@@ -39,7 +38,6 @@ export default function PlantBox({ plant }) {
     await updateDoc(plantRef, { inventory: currentValue });
   };
 
-  //TODO: change filtered list so that it will reset
   return (
     <Box maxW="lg" w="85%" h="60" bg="gray.400" key={plant.id} m={4} p={2}>
       <Text as="em">{plant.common_name}</Text>
@@ -77,9 +75,6 @@ export default function PlantBox({ plant }) {
           Save {currentValue}
         </Button>
       </Center>
-      <Link color="teal.800" size="sm">
-        Details
-      </Link>
     </Box>
   );
 }

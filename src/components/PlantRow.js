@@ -47,7 +47,6 @@ const email = "rachelsplantstore@gmail.com";
       <Td>{plant.common_name}</Td>
       <Td>
         {!hideEditButton ? (
-          //TODO: align the box center
           <Box display="flex" alignItems="center" flexDirection="column">
             <Text m={1}>{plant.inventory}</Text>
             <Button
