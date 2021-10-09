@@ -45,7 +45,7 @@ export default function PlantBox({ plant }) {
         boxSize="100px"
         objectFit="cover"
         src={plant.image_url}
-        fallbackSrc="https://via.placeholder.com/100/000000/FFFFFF?text=ImageNotAvailable"
+        fallbackSrc="https://via.placeholder.com/100/FFFFFF/000000?text=Image%20Not%20Available"
         alt={plant.botanical_name}
         m={2}
       ></Image>

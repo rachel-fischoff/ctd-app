@@ -3,7 +3,6 @@ import PlantContextProvider from "./context/PlantContext";
 import GoogleSignIn from "./components/GoogleSignIn";
 import Search from "./components/Search";
 import ToggleListGrid from "./components/ToggleListGrid";
-// import { auth } from "./lib/firebase";
 import { Heading, Box } from "@chakra-ui/react";
 
 
