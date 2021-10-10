@@ -13,21 +13,13 @@ import {
   NumberInputStepper,
   NumberIncrementStepper,
   NumberDecrementStepper,
+  useToast,
 } from "@chakra-ui/react";
 
 export default function PlantBox({ plant }) {
-  const [currentValue, setCurrentValue] = useState();
+  const [currentValue, setCurrentValue] = useState(plant.inventory);
 
-  const emailAdmin = (plant) => {
-    const message = `We are out of ${plant.common_name}`;
-    sendEmail(message);
-  };
-
-  useEffect(() => {
-    if ((parseInt(currentValue)) === 0) {
-      emailAdmin(plant);
-    }
-  }, [currentValue, plant]);
+  const toast = useToast();
 
   const handleInventoryUpdate = (currentValue) => {
     setCurrentValue(currentValue);
@@ -35,8 +27,30 @@ export default function PlantBox({ plant }) {
 
   const updateDatabase = async (event) => {
     const plantRef = doc(db, "Plants-List", event.target.id);
-    await updateDoc(plantRef, { inventory: currentValue });
+    await updateDoc(plantRef, { inventory: currentValue }).then(
+      toast({
+        title: `Updated Inventory for ${event.target.name}`,
+        status: "success",
+        duration: 9000,
+        isClosable: true,
+      })
+    );
   };
+
+  const emailAdmin = (plant) => {
+    const message = `We are out of ${plant.common_name}`;
+    //TODO: could make input to put for whoever is working have to change the user object and make a prop
+    const name = "rachelsplantstore@gmail.com";
+    const email = "rachelsplantstore@gmail.com";
+    sendEmail(message, name, email);
+  };
+
+  useEffect(() => {
+    if (parseInt(currentValue) === 0) {
+      emailAdmin(plant);
+    }
+  }, [currentValue, plant]);
+
 
   return (
     <Box maxW="lg" w="85%" h="60" bg="gray.200" key={plant.id} m={4} p={2}>
@@ -52,7 +66,7 @@ export default function PlantBox({ plant }) {
       <Text>Number in Stock </Text>
       <Center>
         <NumberInput
-          defaultValue={plant.inventory}
+          defaultValue={currentValue}
           min={0}
           value={currentValue}
           size="md"
@@ -71,6 +85,7 @@ export default function PlantBox({ plant }) {
           size="sm"
           onClick={updateDatabase}
           id={plant.id}
+          name={plant.common_name}
         >
           Save {currentValue}
         </Button>

@@ -2,42 +2,52 @@ import React, { useState, useEffect } from "react";
 import { db } from "../lib/firebase";
 import sendEmail from "./SendEmail";
 import { updateDoc, doc } from "firebase/firestore";
-import { Tr, Td, Input, Button, Center, Text, Box } from "@chakra-ui/react";
+import {
+  Tr,
+  Td,
+  Input,
+  Button,
+  Center,
+  Text,
+  Box,
+  useToast,
+} from "@chakra-ui/react";
 
 export default function PlantRow({ plant }) {
   const [currentValue, setCurrentValue] = useState(plant.inventory);
   const [hideEditButton, setHideEditButton] = useState(false);
 
+  const toast = useToast();
+
   const handleHideEditButton = () => {
-    //change state to true or false and then have it show in a conditional with a boolean
     setHideEditButton(true);
   };
 
-  //should move this repeated code somewhere both list & grid can access it -- probably in context
-  //do i don't have to repeat all 3 of the functions 
   const updateDatabase = async (event) => {
     const plantRef = doc(db, "Plants-List", event.target.id);
-    await updateDoc(plantRef, { inventory: currentValue });
+    await updateDoc(plantRef, { inventory: currentValue }).then( toast({
+      title: `Updated Inventory for ${event.target.name}`,
+      status: "success",
+      duration: 9000,
+      isClosable: true,
+    }));
     setHideEditButton(false);
   };
 
-
-//could make input to put for whoever is working
-const name = "rachelsplantstore@gmail.com";
-const email = "rachelsplantstore@gmail.com";
-
   const emailAdmin = (plant) => {
     const message = `We are out of ${plant.common_name}`;
+    //TODO: could make input to put for whoever is working have to change the user object and make a prop
+    const name = "rachelsplantstore@gmail.com";
+    const email = "rachelsplantstore@gmail.com";
     sendEmail(message, name, email);
   };
 
   useEffect(() => {
-    if ((parseInt(currentValue)) === 0){
+    if (parseInt(currentValue) === 0) {
       emailAdmin(plant);
     }
   }, [currentValue, plant]);
 
-  //TODO: maybe put inline?
   const handleInventoryUpdate = (event) => {
     setCurrentValue(event.target.value);
   };
@@ -61,7 +71,7 @@ const email = "rachelsplantstore@gmail.com";
           </Box>
         ) : (
           <Center>
-            {/* TODO: FIX INPUT COLOR */}
+            {/* TODO: FIX INPUT bg COLOR */}
             <Input
               min={0}
               variant="outline"
@@ -75,6 +85,7 @@ const email = "rachelsplantstore@gmail.com";
               size="sm"
               onClick={updateDatabase}
               id={plant.id}
+              name={plant.common_name}
             >
               Save
             </Button>
