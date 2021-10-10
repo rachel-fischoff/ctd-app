@@ -31,10 +31,10 @@ export default function PlantsListView() {
         </Tr>
       </Thead>
       <Tbody>
-        {filteredPlants &&
+        {filteredPlants.length > 0 ?
           filteredPlants.map((plant) => (
             <PlantRow plant={plant} key={plant.id} />
-          ))}
+          )): null}
       </Tbody>
       {filteredPlants.length > 3 ? (
         <Tfoot>

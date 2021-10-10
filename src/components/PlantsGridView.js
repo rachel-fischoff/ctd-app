@@ -7,10 +7,10 @@ export default function PlantsGridView() {
   const { filteredPlants } = useContext(PlantContext);
   return (
     <SimpleGrid minChildWidth="200px" gap={6}>
-      {filteredPlants &&
+      {filteredPlants.length > 0 ? 
         filteredPlants.map((plant) => (
           <PlantBox plant={plant}/>
-        ))}
+        )): null}
     </SimpleGrid>
   );
 }

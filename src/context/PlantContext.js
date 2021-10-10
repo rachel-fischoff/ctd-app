@@ -18,12 +18,12 @@ const PlantContextProvider = (props) => {
     setPlantList(tempItems);
   };
 
-  //sets plant list to state during first render & TODO: should update when inventory is changed
   useEffect(() => {
     getPlantData();
   }, []);
 
   //when searchTerm is entered, the filtered plants are set to state
+  //TODO: including error handling that can be displayed
   useEffect(() => {
     if (searchTerm) {
       let filtered = plantList.filter((plant) => {
