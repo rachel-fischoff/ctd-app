@@ -15,6 +15,7 @@ export default function Search() {
         placeholder="Search for Available Plants"
         value={searchTerm}
         onChange={handleSearch}
+        aria-label="Search for Available Plants"
       />
     </Box>
   );
