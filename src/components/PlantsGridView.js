@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { PlantContext } from "../context/PlantContext";
 import PlantBox from "./PlantBox";
-import { SimpleGrid } from "@chakra-ui/react";
+import { SimpleGrid, Text } from "@chakra-ui/react";
 
 export default function PlantsGridView() {
   const { filteredPlants } = useContext(PlantContext);
@@ -11,6 +11,8 @@ export default function PlantsGridView() {
         filteredPlants.map((plant) => (
           <PlantBox plant={plant}/>
         )): null}
+        {/* TODO: make bold */}
+        <Text fontSize="xs" mt={5} padding={1} >Rachel's Plant Shop Inventory</Text>
     </SimpleGrid>
   );
 }

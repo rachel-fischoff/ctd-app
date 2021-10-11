@@ -20,21 +20,24 @@ export default function PlantsListView() {
   return (
     <Table variant="mytable" colorScheme="teal" size="sm">
       <TableCaption>Rachel's Plant Shop Inventory</TableCaption>
-      <Thead>
-        <Tr bg={bg + "!important"}>
-          <Th>Name</Th>
-          <Th isNumeric>In Stock</Th>
-          <Th>Kid-Friendly</Th>
-          <Th>Pet-Friendly</Th>
-          <Th>Water</Th>
-          <Th>Light</Th>
-        </Tr>
-      </Thead>
+      {filteredPlants.length >= 1 ? (
+        <Thead>
+          <Tr bg={bg + "!important"}>
+            <Th>Name</Th>
+            <Th isNumeric>In Stock</Th>
+            <Th>Kid-Friendly</Th>
+            <Th>Pet-Friendly</Th>
+            <Th>Water</Th>
+            <Th>Light</Th>
+          </Tr>
+        </Thead>
+      ) : null}
       <Tbody>
-        {filteredPlants.length > 0 ?
-          filteredPlants.map((plant) => (
-            <PlantRow plant={plant} key={plant.id} />
-          )): null}
+        {filteredPlants.length > 0
+          ? filteredPlants.map((plant) => (
+              <PlantRow plant={plant} key={plant.id} />
+            ))
+          : null}
       </Tbody>
       {filteredPlants.length > 3 ? (
         <Tfoot>
