@@ -11,7 +11,7 @@ export default function PlantsGridView() {
         filteredPlants.map((plant) => (
           <PlantBox plant={plant}/>
         )): null}
-        {/* TODO: make bold */}
+        {/* TODO: make bold and same styling at the TableCaption */}
         <Text fontSize="xs" mt={5} padding={1} >Rachel's Plant Shop Inventory</Text>
     </SimpleGrid>
   );
